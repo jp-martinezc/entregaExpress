@@ -88,14 +88,14 @@ app.put('/chat/api/messages/' , (req, res) =>
 {
 
 
-    
+
     let nuevas = req.body;
     var ser = nuevas['ts']
     const error = validateMensaje(req.body)
     if (error) {
         return res.status(400).send(error);
       }
-    Mensaje.update(req.body, {where:{ts: ser}}).then((response)=>
+    Message.update(req.body, {where:{ts: ser}}).then((response)=>
     {
         if (response[0] !== 0) res.send({ message: "si se pudo " 
     });
@@ -108,7 +108,7 @@ app.put('/chat/api/messages/' , (req, res) =>
 app.delete('/chat/api/messages/:msgId' , (req, res) =>
 {
     var ser = req.params['msgId']
-    Mensaje.destroy(
+    Message.destroy(
         {
         where: 
         {
